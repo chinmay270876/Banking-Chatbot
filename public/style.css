@@ -9,15 +9,65 @@ body, html {
   justify-content: space-between;
 }
 
-.header {
-  text-align: center;
-  padding: 15px 0;
-  color: #ffffff;
+header {
+  background-color: #3592bd;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-.header img {
-  height: 50px;
+.header-content {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.logo-img {
+  height: auto;
   width: auto;
+  max-height: 50px;
+}
+
+.login-form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  background-color: #121212;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.login-form .box {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.login-form .btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #3592bd;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-form p {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .chat-container {
@@ -33,17 +83,17 @@ body, html {
   display: flex;
   align-items: flex-start;
   max-width: 70%;
-  word-wrap: break-word; /* Wrap long words */
-  overflow-wrap: break-word; /* Ensure text doesn't overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message.user {
   align-self: flex-end;
   text-align: right;
   flex-direction: row-reverse;
-  word-wrap: break-word; /* Break long text */
+  word-wrap: break-word;
   overflow-wrap: break-word;
-  max-width: 70%; /* Prevent overly wide user messages */
+  max-width: 70%;
 }
 
 .message.model {
@@ -75,12 +125,11 @@ body, html {
   border-radius: 10px;
   background-color: #1e1e1e;
   flex: 1;
-  word-wrap: break-word; /* Wrap long text */
-  overflow-wrap: break-word; /* Break overflowing words */
-  white-space: pre-wrap; /* Preserve formatting and wrap */
-  line-height: 1.5; /* Improve text readability */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 1.5;
 }
-
 
 .message.model .msg-body {
   background: none;
@@ -89,15 +138,15 @@ body, html {
 
 .footer {
   display: flex;
-  justify-content: center; /* Center the footer horizontally */
-  align-items: center; /* Vertically align items */
+  justify-content: center;
+  align-items: center;
   padding: 15px;
   background-color: #2a2a2a;
   border-top: 1px solid #444;
-  margin: 0 400px; /* Add 400px margin on left and right */
-  border-radius: 20px; /* Rounded edges for the footer */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Add subtle shadow */
-  gap: 5px; /* Add spacing between elements */
+  margin: 0 400px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  gap: 5px;
 }
 
 .footer input {
@@ -109,7 +158,7 @@ body, html {
   border-radius: 5px;
   outline: none;
   font-size: 16px;
-  margin-right: 10px; /* Space between input and button */
+  margin-right: 10px;
 }
 
 .footer button {
@@ -122,7 +171,6 @@ body, html {
   font-size: 16px;
   font-weight: bold;
 }
-
 
 .footer button:hover {
   background-color: #4f5b66;
