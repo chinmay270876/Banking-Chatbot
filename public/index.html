@@ -11,33 +11,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <img src="https://i.ibb.co/F57MGN0/ai-1.png" alt="Chatbot Logo">
-    </div>
+    <header>
+        <div class="header-content">
+            <img src="https://i.ibb.co/F57MGN0/ai-1.png" alt="Chatbot Logo" class="logo-img">
+        </div>
+        <button id="login-btn">LOG IN</button>
+        <form action="#" class="login-form" id="login-form">
+            <h3>Login now</h3>
+            <input type="email" placeholder="enter your email" class="box">
+            <input type="password" placeholder="your password" class="box">
+            <p>Forget Your Password <a href="#">Click Here</a></p>
+            <p>Don't Have An Account <a href="#">Create Now</a></p>
+            <input type="submit" value="Login Now" class="btn">
+        </form>
+    </header>
 
-    <!-- Chat Container -->
     <div id="chatContainer" class="chat-container"></div>
 
-    <!-- Footer -->
     <div class="footer">
-      <input type="text" id="text" placeholder="Ask me anything" autocomplete="off" required>
-      <input type="file" id="fileInput" style="display: none;" accept="image/*">
-      <button id="copy">
-        <i class="fas fa-copy"></i>
-    </button>
-    <button id="Terminate">
-      <i class="fas fa-stop"></i>
-  </button>
-      <button id="attachment">
-          <i class="fas fa-paperclip"></i>
-      </button>
-      <button id="send">
-        <i class="fas fa-location-arrow"></i>
-      </button>
+        <input type="text" id="text" placeholder="Ask me anything" autocomplete="off" required>
+        <input type="file" id="fileInput" style="display: none;" accept="image/*">
+        <button id="copy" aria-label="Copy to clipboard">
+            <i class="fas fa-copy"></i>
+        </button>
+        <button id="Terminate" aria-label="Terminate conversation">
+            <i class="fas fa-stop"></i>
+        </button>
+        <button id="attachment" aria-label="Attach file">
+            <i class="fas fa-paperclip"></i>
+        </button>
+        <button id="send" aria-label="Send message">
+            <i class="fas fa-location-arrow"></i>
+        </button>
     </div>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
