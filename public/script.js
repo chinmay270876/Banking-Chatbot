@@ -1,3 +1,4 @@
+// script.js
 // Counter to assign unique IDs to bot messages
 let messageCount = 0;
 let selectedFile = null; // Variable to store the selected file
@@ -139,6 +140,27 @@ function attachEventListeners() {
             }
         }
     });
+
+    // Login Form functionality
+    const loginBtn = document.getElementById("login-btn");
+    const loginForm = document.getElementById("login-form");
+
+    if (loginBtn && loginForm) {
+        loginForm.style.display = "none"; // Initially hide the form
+        loginBtn.addEventListener("click", function () {
+            if (loginForm.style.display === "none") {
+                loginForm.style.display = "block";
+            } else {
+                loginForm.style.display = "none";
+            }
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target !== loginBtn && !loginForm.contains(event.target) && loginForm.style.display === "block") {
+                loginForm.style.display = "none";
+            }
+        });
+    }
 }
 
 // Initialize the chat application when the DOM is fully loaded
