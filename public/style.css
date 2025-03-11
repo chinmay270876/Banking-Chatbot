@@ -113,7 +113,7 @@ body, html {
 }
 
 .footer button {
-  background-color: #3b4252;
+  background-color: #3592bd;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -123,9 +123,6 @@ body, html {
   font-weight: bold;
 }
 
-.footer button#attachment {
-  background-color: #3592bd;
-}
 
 .footer button:hover {
   background-color: #4f5b66;
