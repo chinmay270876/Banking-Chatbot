@@ -30,12 +30,24 @@ app.post("/get", uploads.single("file"), async (req, res) => {
         let bankingResponse = "";
 
         // Banking-related request
-        if (userInput.toLowerCase().includes("balance") || userInput.toLowerCase().includes("transfer")) {
+        if (userInput.toLowerCase().includes("balance") || 
+            userInput.toLowerCase().includes("transfer") ||
+            userInput.toLowerCase().includes("transactions") ||
+            userInput.toLowerCase().includes("help")) {
+
             if (userInput.toLowerCase().includes("balance")) {
                 try {
                     const bankingApiUrl = `${BANKING_API_URL}/balance?account=123`;
                     const bankingApiResponse = await axios.get(bankingApiUrl);
-                    bankingResponse = JSON.stringify(bankingApiResponse.data);
+                    const balanceData = bankingApiResponse.data;
+
+                    if (balanceData && balanceData.hasOwnProperty('balance')) {
+                        bankingResponse = `balance = ${balanceData.balance}`;
+                    } else if (balanceData && balanceData.hasOwnProperty('error')) {
+                        bankingResponse = balanceData.error;
+                    } else {
+                        bankingResponse = "Error retrieving balance.";
+                    }
                 } catch (bankingError) {
                     console.error("Error calling banking API:", bankingError);
                     bankingResponse = "Error retrieving banking data.";
@@ -49,10 +61,52 @@ app.post("/get", uploads.single("file"), async (req, res) => {
                     };
                     const bankingApiUrl = `${BANKING_API_URL}/transfer`;
                     const bankingApiResponse = await axios.post(bankingApiUrl, transferData);
-                    bankingResponse = JSON.stringify(bankingApiResponse.data);
+                    const transferResult = bankingApiResponse.data;
+
+                    if (transferResult && transferResult.hasOwnProperty('message')) {
+                        bankingResponse = transferResult.message;
+                    } else if (transferResult && transferResult.hasOwnProperty('error')) {
+                        bankingResponse = transferResult.error;
+                    } else {
+                        bankingResponse = "Error processing transfer.";
+                    }
                 } catch (bankingError) {
                     console.error("Error calling banking API:", bankingError);
                     bankingResponse = "Error processing transfer.";
+                }
+            } else if (userInput.toLowerCase().includes("transactions")) {
+                try {
+                    const bankingApiUrl = `${BANKING_API_URL}/transactions?account=123`;
+                    const bankingApiResponse = await axios.get(bankingApiUrl);
+                    const transactionData = bankingApiResponse.data;
+
+                    if (transactionData && transactionData.hasOwnProperty('transactions')) {
+                        bankingResponse = `transactions = ${JSON.stringify(transactionData.transactions)}`;
+                    } else if (transactionData && transactionData.hasOwnProperty('error')) {
+                        bankingResponse = transactionData.error;
+                    } else {
+                        bankingResponse = "Error retrieving transactions.";
+                    }
+                } catch (bankingError) {
+                    console.error("Error calling banking API:", bankingError);
+                    bankingResponse = "Error retrieving transactions.";
+                }
+            } else if (userInput.toLowerCase().includes("help")) {
+                try {
+                    const bankingApiUrl = `${BANKING_API_URL}/help`;
+                    const bankingApiResponse = await axios.get(bankingApiUrl);
+                    const helpData = bankingApiResponse.data;
+
+                    if (helpData && helpData.hasOwnProperty('faq')) {
+                        bankingResponse = `help = ${JSON.stringify(helpData.faq)}`;
+                    } else if (helpData && helpData.hasOwnProperty('error')) {
+                        bankingResponse = helpData.error;
+                    } else {
+                        bankingResponse = "Error retrieving help.";
+                    }
+                } catch (bankingError) {
+                    console.error("Error calling banking API:", bankingError);
+                    bankingResponse = "Error retrieving help.";
                 }
             }
         } else { // Gemini-related request
