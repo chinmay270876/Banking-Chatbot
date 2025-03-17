@@ -1,12 +1,13 @@
-from flask import Flask, jsonify, request  # Added request import
+from flask import Flask, jsonify, request
+from flask_cors import CORS  # Import CORS
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
-# Mock database (replace with a real database)
 accounts = {
     "123": {"balance": 1000, "transactions": []},
     "456": {"balance": 500, "transactions": []},
@@ -14,10 +15,9 @@ accounts = {
 
 @app.route('/balance', methods=['GET'])
 def get_balance():
-    account_number = request.args.get('account') #get account from query parameter
+    account_number = request.args.get('account')
     if account_number not in accounts:
         return jsonify({"error": "Account not found"}), 404
-
     return jsonify({"balance": accounts[account_number]["balance"]})
 
 @app.route('/transactions', methods=['GET'])
