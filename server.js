@@ -30,7 +30,7 @@ app.post("/get", uploads.single("file"), async (req, res) => {
         let bankingResponse = "";
 
         // Banking-related request
-        if (userInput.toLowerCase().includes("balance") || 
+        if (userInput.toLowerCase().includes("balance") ||
             userInput.toLowerCase().includes("transfer") ||
             userInput.toLowerCase().includes("transactions") ||
             userInput.toLowerCase().includes("help")) {
@@ -42,7 +42,7 @@ app.post("/get", uploads.single("file"), async (req, res) => {
                     const balanceData = bankingApiResponse.data;
 
                     if (balanceData && balanceData.hasOwnProperty('balance')) {
-                        bankingResponse = `balance = ${balanceData.balance}`;
+                        bankingResponse = `balance = ₹${balanceData.balance}`; // Added ₹ symbol
                     } else if (balanceData && balanceData.hasOwnProperty('error')) {
                         bankingResponse = balanceData.error;
                     } else {
